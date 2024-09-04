@@ -1,0 +1,59 @@
+/* Ensure that the html and body elements take up the full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Wrapper for the whole page to take full height */
+  .app-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Content area that will take up available space */
+  .content {
+    flex: 1;
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: black; /* Dark background */
+  color: #ffffff; /* White text color */
+  padding: 1rem;
+  font-weight: 500;
+
+  font-size: 1.25rem; /* Increase font size for footer text */
+  display: flex;
+  justify-content: space-between; /* Space between copyright and social media */
+  align-items: center; /* Vertically center items */
+  }
+  
+  /* .social-media {
+    margin-top: 10px;
+  } */
+
+  /* .footer .social-media {
+    margin: 0;
+  }
+   */
+
+   .footer .social-media {
+    display: flex;
+    gap: 10px;
+}
+  .social-icon {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    color: #007bff; /* Change color on hover */
+  }
+  
+.footer .copyright {
+  margin: 0; /* Remove margin around copyright text */
+}

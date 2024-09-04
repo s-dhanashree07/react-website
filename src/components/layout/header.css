@@ -1,0 +1,39 @@
+
+.custom-navbar {
+    padding: 0.5rem 1rem; /* Adjust padding if needed */
+  }
+  
+  .custom-navbar .nav-item {
+    margin-left: 1rem; /* Adjust spacing between nav items */
+  }
+  
+  .custom-navbar .navbar-brand {
+    flex: 1; /* Push brand to the left */
+  }
+  
+  .custom-navbar .nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-navbar .nav-link {
+    margin-left: 1rem; /* Adjust spacing between nav items */
+    font-size: 1.25rem; /* Increase font size for nav links */
+    font-weight: 500; /* Optional: make the font bolder */
+    color: #ffffff;
+  }
+  
+  .custom-navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+
+  .custom-navbar .dropdown-item {
+    font-size: 1.25rem; /* Increase font size for dropdown items */
+    font-weight: 500; /* Optional: font weight for dropdown items */
+  }
+  
+  .logo-image {
+    height: 60px; /* Adjust the height of the logo as needed */
+    width: auto; /* Maintain aspect ratio */
+  }
