@@ -1,0 +1,286 @@
+// import React from 'react';
+// import './contact.css';
+
+// const Contact = () => {
+//   return (
+//     <div className="contact-container">
+//       <div className="form-container">
+//         <h2>Contact Form</h2>
+//         <form>
+//           <div className="form-group">
+//             <label htmlFor="name">Name</label>
+//             <input type="text" id="name" name="name" required />
+//           </div>
+//           <div className="form-group">
+//             <label htmlFor="email">Email</label>
+//             <input type="email" id="email" name="email" required />
+//           </div>
+//           <div className="form-group">
+//             <label htmlFor="phone">Phone</label>
+//             <input type="tel" id="phone" name="phone" />
+//           </div>
+//           <div className="form-group">
+//             <label htmlFor="message">Message</label>
+//             <textarea id="message" name="message" rows="4" required></textarea>
+//           </div>
+//           <button type="submit">Send</button>
+//         </form>
+//       </div>
+//       <div className="map-container">
+//         <h2>Our Location</h2>
+//         <iframe
+//           title="Location Map"
+//           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202907.66417223497!2d72.87592847803482!3d19.094461218206906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1725392883603!5m2!1sen!2sin"
+//           width="100%"
+//           height="400"
+//           style={{ border: 0 }}
+//           allowFullScreen=""
+//           loading="lazy"
+//         ></iframe>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Contact;
+import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
+import './contact.css';
+
+const Contact = () => {
+  const [formValues, setFormValues] = useState({ name: '', email: '', phone: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+  const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    if (!formValues.name) {
+      newErrors.name = 'Name is required';
+      isValid = false;
+    }
+
+    if (!formValues.email) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formValues.email)) {
+      newErrors.email = 'Email address is invalid';
+      isValid = false;
+    }
+
+    if (!formValues.message) {
+      newErrors.message = 'Message is required';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (validate()) {
+      setLoading(true);
+      setSuccessMessage('');
+      try {
+        await emailjs.sendForm('service_xf2ukog', 'template_enntprq', e.target, 'RjubjWVjJllxAXn--');
+        setSuccessMessage('Email sent successfully!');
+        setFormValues({ name: '', email: '', phone: '', message: '' });
+      } catch (error) {
+        console.error('Email sending error:', error);
+        setSuccessMessage('Failed to send email. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
+  return (
+    <div className="contact-container">
+      <div className="form-container">
+        <h2>Contact Form</h2>
+        {successMessage && <div className="success-message">{successMessage}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formValues.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <div className="error-message">{errors.name}</div>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <div className="error-message">{errors.email}</div>}
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formValues.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              value={formValues.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+            {errors.message && <div className="error-message">{errors.message}</div>}
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Send'}
+          </button>
+        </form>
+      </div>
+      <div className="map-container">
+        <h2>Our Location</h2>
+        <iframe
+          title="Location Map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202907.66417223497!2d72.87592847803482!3d19.094461218206906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1725392883603!5m2!1sen!2sin"
+          width="100%"
+          height="400"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
+
+
+
+
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px; /* Add gap between the form and map */
+    max-width: 1200px; /* Optional: Adjust as needed */
+    margin: 0 auto; /* Center container horizontally */
+  }
+  
+  .form-container, .map-container {
+    flex: 1;
+    margin: 0 10px; /* Optional: Adds horizontal margin for additional spacing */
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional: Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+    }
+  
+    .form-container, .map-container {
+      margin: 0; /* Remove horizontal margin on small screens */
+      margin-bottom: 20px; /* Add space between stacked elements */
+    }
+  }
+
+  .success-message {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb; /* Border color */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem;
+    text-align: center; /* Center the text */
+    animation: fadeIn 0.5s ease-in-out; /* Optional: fade-in effect */
+  }
+  
+  /* Optional: Animation for the success message */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .error-message {
+    color: #721c24; /* Dark red text */
+    background-color: #f8d7da; /* Light red background */
+    border: 1px solid #f5c6cb; /* Border color */
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  
+
+
