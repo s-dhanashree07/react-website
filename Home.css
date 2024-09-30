@@ -1,0 +1,25 @@
+/* HOME */
+#home {
+    background: linear-gradient(rgba(var(--c-brand-rgb), 0.507), rgba(var(--c-brand-rgb), 0.438)), url("./images/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* src/Home.css */
+.home-background {
+    background-image: url('./images/bg.jpg'); /* Updated path */
+  }
+  
+
+#home h1 {
+    color: var(--c-white);
+}
+
+#home h4 {
+    color: var(--c-white);
+}

@@ -1,0 +1,51 @@
+.section-padding {
+  padding: 20px 0;
+}
+
+.section-title {
+  margin-bottom: 50px;
+}
+
+.section-title p {
+  max-width: 1000px;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.iconbox {
+  font-size: 24px;
+  color: #333;
+}
+
+.work-text {
+  font-size: 16px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+.line {
+  width: 50px;
+  height: 2px;
+  background-color: #333;
+  margin: 20px auto;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}

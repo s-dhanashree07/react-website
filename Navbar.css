@@ -1,0 +1,13 @@
+/* Add styles for Navbar here based on your existing CSS */
+.navbar {
+    box-shadow: var(--box-shadow);
+  }
+  .navbar-nav .nav-link {
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--c-dark);
+  }
+  .navbar-nav .nav-link.active {
+    color: var(--c-brand);
+  }
+  
