@@ -97,7 +97,7 @@ const Contact = () => {
       setLoading(true);
       setSuccessMessage('');
       try {
-        await emailjs.sendForm('service_xf2ukog', 'template_enntprq', e.target, 'RjubjWVjJllxAXn--');
+        await emailjs.sendForm('service_xf2ukog', 'template_enntprq', e.target, 'l5VzmpOcF_P-CmhiI');
         setSuccessMessage('Email sent successfully!');
         setFormValues({ name: '', email: '', phone: '', message: '' });
       } catch (error) {
